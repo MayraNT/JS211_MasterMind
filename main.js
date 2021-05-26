@@ -28,13 +28,59 @@ const getRandomInt = (min, max) => {
   return Math.floor(Math.random() * (max - min)) + min;
 }
 
-const generateHint = () =>  {
-  // your code here
+// generateHint() should take one argument, guess.
+// In generateHint(), create variables solutionArray and guessArray that each split up passed in arguments, [.split] on '' (empty string).
+// Create a variable correctLetterLocations and set it to 0.
+//  In a for loop, iterate over the solutionArray, comparing each index of solutionArray against the same index of guessArray. If the item matches, increment correctLetterLocations, and set that index in solutionArray to null.
+
+// Set a variable correctLetters equal to 0.
+// in a for loop, again iterate over the solutionArray.
+// Using .indexOf, determine if the item at the current index in guessArray appears inside of solutionArray. Save that index in a variable called targetIndex.
+// Now, if targetIndex is greater than -1(it exists in the array), increment correctLetters and set the item in solutionArray at that index equal to null.
+
+//  return a string that prints out the hints you generated, with correctLetterLocations, correctLetters, separated by a hyphen.
+
+const generateHint = (guess) =>  {
+  let solutionArray = solution.split('');
+  let guessArray = guess.split('');
+
+  let correctLetterLocations = 0;
+  let correctLetters = 0;
+
+  for (let i = 0; i < solutionArray.length; i++) {
+    if (solutionArray[i] === guessArray[i]) {
+      correctLetterLocations++;
+      solutionArray[i] = null;
+    }
+  }
+
+  for (let i = 0; i < solutionArray.length; i++) {
+    let targetIndex = solutionArray.indexOf(guessArray[i]);
+    if (targetIndex > -1) {
+      correctLetters++;
+      solutionArray[targetIndex] = null;
+    }
+  }
+
+  return `${correctLetterLocations}-${correctLetters}`;
 }
 
 const mastermind = (guess) => {
-  solution = 'abcd'; // Comment this out to generate a random solution
-  // your code here
+  // solution = 'abcd'; // Comment this out to generate a random solution
+  // Define a variable called hint that collects the returned value of generateHint(guess). .push the guess and the hint (as a combined string) into the board.
+  let hint = generateHint(guess);
+  board.push(`${guess}-${hint}`);
+  
+  // In mastermind(), if the guess you passed in equals the solution, return 'You guessed it!';
+  // After 10 incorrect guesses, if the board length equals 10, return 'You ran out of turns! The solution was' and the solution. 
+  // Otherwise, return 'Guess again.'.
+  if (guess === solution) {
+    return 'You guessed it!';
+  } else if (board.length === 10) {
+    return 'You ran out of turns! The solution was ' + solution;
+  } else {
+    return 'Guess again.';
+  }
 }
 
 
