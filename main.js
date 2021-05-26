@@ -65,15 +65,18 @@ const generateHint = (guess) =>  {
   return `${correctLetterLocations}-${correctLetters}`;
 }
 
+// Define a variable called hint that collects the returned value of generateHint(guess). 
+// .push the guess and the hint (as a combined string) into the board.
+
+// In mastermind(), if the guess you passed in equals the solution, return 'You guessed it!';
+// After 10 incorrect guesses, if the board length equals 10, return 'You ran out of turns! The solution was' and the solution. 
+// Otherwise, return 'Guess again.'.
+
 const mastermind = (guess) => {
   // solution = 'abcd'; // Comment this out to generate a random solution
-  // Define a variable called hint that collects the returned value of generateHint(guess). .push the guess and the hint (as a combined string) into the board.
   let hint = generateHint(guess);
   board.push(`${guess}-${hint}`);
   
-  // In mastermind(), if the guess you passed in equals the solution, return 'You guessed it!';
-  // After 10 incorrect guesses, if the board length equals 10, return 'You ran out of turns! The solution was' and the solution. 
-  // Otherwise, return 'Guess again.'.
   if (guess === solution) {
     return 'You guessed it!';
   } else if (board.length === 10) {
