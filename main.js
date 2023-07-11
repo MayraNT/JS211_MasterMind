@@ -74,18 +74,18 @@ const generateHint = (guess) =>  {
 
 const mastermind = (guess) => {
   // solution = 'abcd'; // Comment this out to generate a random solution
+
   let hint = generateHint(guess);
-  board.push(`${guess}-${hint}`);
+  board.push(`${guess} ${hint}`);
   
   if (guess === solution) {
-    return 'You guessed it!';
+    console.log('You guessed it!'); // return 'You guessed it!';
   } else if (board.length === 10) {
-    return 'You ran out of turns! The solution was ' + solution;
+    console.log('You ran out of turns! The solution was ' + solution); // return 'You ran out of turns! The solution was ' + solution;
   } else {
-    return 'Guess again.';
+    console.log('Guess again.'); // return 'Guess again.';
   }
 }
-
 
 const getPrompt = () =>  {
   rl.question('guess: ', (guess) => {
