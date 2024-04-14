@@ -80,6 +80,7 @@ const mastermind = (guess) => {
   
   if (guess === solution) {
     console.log('You guessed it!'); // return 'You guessed it!';
+    return 'You guessed it!'
   } else if (board.length === 10) {
     console.log('You ran out of turns! The solution was ' + solution); // return 'You ran out of turns! The solution was ' + solution;
   } else {
@@ -90,8 +91,10 @@ const mastermind = (guess) => {
 const getPrompt = () =>  {
   rl.question('guess: ', (guess) => {
     mastermind(guess);
-    printBoard();
-    getPrompt();
+    if (board.length !== 10) {
+      printBoard();
+      getPrompt();
+    }
   });
 }
 
